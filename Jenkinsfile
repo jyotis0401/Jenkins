@@ -9,7 +9,7 @@ pipeline{
         stage('Build Code'){
             steps{
                 sh "chmod u+x main.cpp"
-                sh "gcc main.cpp -o main"
+                sh "g++ main.cpp -o main"
                 sh "./main"
             }
         }
