@@ -14,5 +14,32 @@ pipeline{
             }
         }
         // stage('Test code')
+        stage('Build Docker Image') {
+                    steps {
+                        script {
+                            sh 'docker --version'
+        //                     sh "docker build -t ${DOCKER_IMAGE_NAME} ."
+                            sh "docker build -t ${DOCKER_IMAGE_NAME} ."
+
+                        }
+                    }
+                }
+                stage('Docker Hub Login') {
+                    steps {
+                        withCredentials([usernamePassword(credentialsId: env.DOCKER_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                            sh '''
+                                echo "Logging into Docker Hub..."
+                                echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin || echo "Docker login failed!"
+                            '''
+                        }
+                    }
+                }
+                stage('Push Docker Images') {
+                    steps {
+                        script {
+                            sh "docker push ${DOCKER_IMAGE_NAME}"
+                        }
+                    }
+                }
     }
 }
