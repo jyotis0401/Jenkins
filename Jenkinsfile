@@ -18,6 +18,11 @@ pipeline{
                 sh "./main"
             }
         }
+        stage('Check PATH') {
+            steps {
+                sh 'echo $PATH'
+            }
+        }
         // stage('Test code')
         stage('Build Docker Image') {
             steps {
@@ -28,11 +33,7 @@ pipeline{
                 }
             }
         }
-        stage('Check PATH') {
-            steps {
-                sh 'echo $PATH'
-            }
-        }
+        
         stage('Docker Hub Login') {
             steps {
                 withCredentials([usernamePassword(credentialsId: env.DOCKER_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
