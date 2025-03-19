@@ -1,7 +1,7 @@
 pipeline{
     environment {
             // GITHUB_REPO_URL = 'https://github.com/jyotis0401/scientific_calculator_devops.git'
-            DOCKER_IMAGE_NAME = 'Demo1'
+            DOCKER_IMAGE_NAME = 'demo1'
             DOCKER_CREDENTIALS = 'Docker_Credential'
      }
     agent any
