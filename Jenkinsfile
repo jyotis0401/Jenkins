@@ -28,6 +28,11 @@ pipeline{
                 }
             }
         }
+        stage('Check PATH') {
+            steps {
+                sh 'echo $PATH'
+            }
+        }
         stage('Docker Hub Login') {
             steps {
                 withCredentials([usernamePassword(credentialsId: env.DOCKER_CREDENTIALS, usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
