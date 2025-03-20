@@ -7,4 +7,4 @@ COPY main.cpp ./main.cpp
 
 RUN g++ -o app main.cpp
 
-ENTRYPOINT ["./app]
+ENTRYPOINT ["./app"]
