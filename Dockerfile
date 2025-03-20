@@ -1,4 +1,5 @@
-FROM gcc: latest //gcc because there is no official g++ base image
+FROM gcc: latest 
+#gcc because there is no official g++ base image
 
 WORKDIR /app
 
